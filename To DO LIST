@@ -1,0 +1,98 @@
+<html>
+<head>
+  <style>
+    /* CSS code to style the input field, button, and task list */
+    input {
+      width: 300px;
+      height: 30px;
+      font-size: 20px;
+      margin: 10px;
+    }
+
+    button {
+      width: 100px;
+      height: 40px;
+      font-size: 20px;
+      background-color: green;
+      color: white;
+      margin: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 10px;
+      padding: 0;
+    }
+
+    li {
+      font-size: 20px;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    li.completed {
+      text-decoration: line-through;
+      color: gray;
+      background-color: lightgray;
+    }
+
+    li button {
+      width: 80px;
+      height: 30px;
+      font-size: 15px;
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <input id="task-input" type="text" placeholder="Enter a task">
+  <button id="add-button">Add</button>
+  <ul id="task-list"></ul>
+  <script>
+    // JavaScript code to handle task addition, completion, and removal
+    // Get the input field, button, and task list elements
+    var taskInput = document.getElementById("task-input");
+    var addButton = document.getElementById("add-button");
+    var taskList = document.getElementById("task-list");
+
+    // Add a click event listener to the button
+    addButton.addEventListener("click", function() {
+      // Get the value of the input field
+      var task = taskInput.value;
+      // Check if the input field is not empty
+      if (task) {
+        // Create a new list item element
+        var listItem = document.createElement("li");
+        // Set the text content of the list item to the task
+        listItem.textContent = task;
+        // Create a new button element
+        var removeButton = document.createElement("button");
+        // Set the text content of the button to "Remove"
+        removeButton.textContent = "Remove";
+        // Add a click event listener to the button
+        removeButton.addEventListener("click", function() {
+          // Remove the list item from the task list
+          taskList.removeChild(listItem);
+        });
+        // Append the button to the list item
+        listItem.appendChild(removeButton);
+        // Add a click event listener to the list item
+        listItem.addEventListener("click", function() {
+          // Toggle the "completed" class on the list item
+          listItem.classList.toggle("completed");
+        });
+        // Append the list item to the task list
+        taskList.appendChild(listItem);
+        // Clear the input field
+        taskInput.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
