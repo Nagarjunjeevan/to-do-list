@@ -1,0 +1,4 @@
+input_string = input("Enter a string: ")
+specified_vowels = {'A', 'a', 'E', 'e', 'I', 'i', 'O', 'o','U', 'u'}
+vowel_count = sum(1 for char in input_string if char in specified_vowels)
+print(f"Number of specified vowels in the string: {vowel_count}")
